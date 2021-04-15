@@ -2,9 +2,16 @@ import 'reflect-metadata';
 import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
 import cors from 'cors';
+import { errors as celErrors } from 'celebrate';
 import routes from './routes';
 import AppError from './errors/AppError';
 import createConnection from './database/';
+// import * as path from 'path';
+// import * as dotenv from 'dotenv';
+
+// dotenv.config({
+//   path: process.cwd() + '/.env',
+// });
 
 createConnection();
 
@@ -15,6 +22,7 @@ process.title = 'api-vendas';
 app.use(cors());
 app.use(express.json());
 app.use(routes);
+app.use(celErrors());
 app.use(
   (error: Error, request: Request, response: Response, next: NextFunction) => {
     if (error instanceof AppError) {

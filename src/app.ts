@@ -6,6 +6,7 @@ import { errors as celErrors } from 'celebrate';
 import routes from './routes';
 import AppError from './errors/AppError';
 import createConnection from './database/';
+import uploadConfig from './config/upload';
 // import * as path from 'path';
 // import * as dotenv from 'dotenv';
 
@@ -21,6 +22,7 @@ process.title = 'api-vendas';
 
 app.use(cors());
 app.use(express.json());
+app.use('/files', express.static(uploadConfig.directory));
 app.use(routes);
 app.use(celErrors());
 app.use(

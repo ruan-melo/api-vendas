@@ -1,3 +1,4 @@
+import { classToClass } from 'class-transformer';
 import { Request, Response } from 'express';
 import CreateUserService from '../services/users/CreateUserService';
 import ListUserService from '../services/users/LIstUserService';
@@ -6,7 +7,7 @@ class UsersController {
   async index(req: Request, res: Response): Promise<Response> {
     const listUser = new ListUserService();
     const users = await listUser.execute();
-    return res.json(users);
+    return res.json(classToClass(users));
   }
 
   async create(req: Request, res: Response): Promise<Response> {
@@ -19,7 +20,7 @@ class UsersController {
       password,
     });
 
-    return res.json(user);
+    return res.json(classToClass(user));
   }
 }
 

@@ -1,0 +1,14 @@
+{
+  "type": "postgres",
+  "host": "localhost",
+  "port": 5432,
+  "username": "postgres",
+  "password": "docker",
+  "database": "apivendas",
+  "entities": ["./dist/models/**.js"],
+  "logging": false,
+  "migrations": ["./dist/database/migrations/**.js"],
+  "cli": {
+    "migrationsDir": "./dist/database/migrations"
+  }
+}
